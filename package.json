@@ -1,0 +1,30 @@
+{
+  "name": "codemirror",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ChristianSchmidt1981/codemirror.git",
+  "author": "Christian Schmidt <cschmidt.solingen@gmail.com>",
+  "license": "MIT",
+  "rootDir": "src",
+  "scripts": {
+    "eslint": "eslint .",
+    "build": "react-scripts build",
+    "start": "node server"
+  },
+  "dependencies": {
+    "codemirror": "^5.34.0",
+    "react": "^16.2.0",
+    "react-codemirror2": "^4.0.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "^1.1.1",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1"
+  }
+}
