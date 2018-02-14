@@ -1,6 +1,30 @@
-const updateText = text => ({
-  type: 'UPDATE_TEXT',
-  text,
+const updateFile = (text, cursorPosition) => {
+  fetch('./srv/');
+  return {
+    type: 'UPDATE_FILE',
+    text,
+    cursorPosition,
+  };
+};
+
+const selectFile = fileName => ({
+  type: 'SELECT_FILE',
+  fileName,
 });
 
-module.exports = { updateText };
+const deleteFile = fileName => ({
+  type: 'DELETE_FILE',
+  fileName,
+});
+
+const storeFile = fileName => ({
+  type: 'STORE_FILE',
+  fileName,
+});
+
+module.exports = {
+  updateFile,
+  deleteFile,
+  storeFile,
+  selectFile,
+};
