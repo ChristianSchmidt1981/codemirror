@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import File from '../container/File';
+
+import '../assets/css/main.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 
@@ -25,7 +27,7 @@ export default class App extends Component {
         <CodeMirror
           value={this.props.file.text}
           options={{
-            mode: 'xml',
+            mode: 'javascript',
             theme: 'material',
             lineNumbers: true,
           }}

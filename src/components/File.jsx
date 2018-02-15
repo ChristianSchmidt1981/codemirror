@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default class File extends Component {
   constructor(props) {
@@ -9,11 +11,29 @@ export default class File extends Component {
 
   deleteFile(event, fileName) {
     event.preventDefault();
-    this.props.deleteFile(fileName);
+
+    if (this.props.isLastFile) {
+      confirmAlert({
+        title: 'delete this file?',
+        message: 'you cannot delete the last file',
+        cancelLabel: 'Cancel',
+      });
+    } else {
+      confirmAlert({
+        title: 'delete this file?',
+        message: `did you want to delete ${fileName}`,
+        confirmLabel: 'Delete',
+        cancelLabel: 'Cancel',
+        onConfirm: function () {
+          this.props.deleteFile(fileName);
+        }.bind(this),
+      });
+    }
   }
 
   storeFile(event) {
     event.preventDefault();
+
     const newFileName = document.getElementById('newFile').value;
 
     this.props.storeFile(newFileName);
@@ -21,29 +41,37 @@ export default class File extends Component {
 
   selectFile(event, fileName) {
     event.preventDefault();
+
+    // select-file visible
+    const filesList = document.getElementById('files');
+    Array.from(filesList.children).map(file => file.classList.remove('selected-file'));
+    document.getElementById(`file-${fileName}`).classList.add('selected-file');
+
+    // select file
     this.props.selectFile(fileName);
   }
 
   render() {
     return (
-      <div>
-            <form onSubmit={event => this.storeFile(event)}>
-              <input type="text" name="newFile" id="newFile" defaultValue="" />
-              <input type="submit" value="save" />
-            </form>
-        <ul>
-          {
-            this.props.files.map((file, idx) => {
-              return (
-                <li key={idx}>
-                  <span onClick={event => this.selectFile(event, file.fileName)}>{file.fileName}</span>
-                  <span onClick={event => this.deleteFile(event, file.fileName)}>X</span>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </div>
+      <ul className="files" id="files">
+        <li>
+          <form onSubmit={event => this.storeFile(event)}>
+            <input placeholder="please add your file" type="text" className="file-name" name="newFile" id="newFile" defaultValue="" />
+            <input type="submit" className="submit" value="save" />
+          </form>
+        </li>
+        {
+          this.props.files.map((file, idx) => {
+            const selectedFile = this.props.selectedFile === file.fileName ? 'selected-file' : '';
+            return (
+            <li className={`file ${selectedFile}`} id={`file-${file.fileName}`} key={idx}>
+                <span title="selected this file" className="filename" onClick={event => this.selectFile(event, file.fileName)}>{file.fileName}</span>
+                <span title="delete file" className="delete-file" onClick={event => this.deleteFile(event, file.fileName)}>X</span>
+              </li>
+            );
+          })
+        }
+      </ul>
     );
   }
 }

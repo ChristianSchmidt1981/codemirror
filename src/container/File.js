@@ -5,6 +5,8 @@ import { deleteFile, storeFile, selectFile } from '../actions/index';
 
 const mapStateToProps = state => ({
   files: state.files,
+  selectedFile: state.selectedFile,
+  isLastFile: state.files.length === 1,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(

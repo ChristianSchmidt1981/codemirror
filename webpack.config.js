@@ -16,14 +16,17 @@ module.exports = {
     rules: [
       {
         test: /\.(scss|css)$/,
-        use: [{
+        use: [/*{
           loader: 'style-loader',
-        }, {
+        }, */{
           loader: 'css-loader',
+          options: {
+            sourceMap: true,
+          },
         }, {
           loader: 'sass-loader',
           options: {
-            includePaths: ['public/assets/css'],
+            sourceMap: true,
           },
         }],
       },

@@ -21,6 +21,7 @@ function Reducer(state = DefaultState, action) {
 
     case 'STORE_FILE': {
       const newState = getCopyOfState(state);
+      newState.selectedFile = action.fileName,
       newState.files.push({
         fileName: action.fileName,
         text: '',
@@ -34,7 +35,7 @@ function Reducer(state = DefaultState, action) {
 
     case 'DELETE_FILE': {
       const newState = getCopyOfState(state);
-
+      newState.selectedFile = newState.files[0].fileName;
       newState.files = newState.files
         .filter(fileFromIteration => fileFromIteration.fileName !== action.fileName);
 

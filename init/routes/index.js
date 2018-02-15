@@ -1,9 +1,26 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+const router = express.Router();
+
+router.get('/', (request, response) => {
+  // load text from the db
+  response.send('Hello World!');
 });
+
+router.delete('/', (request, response) => {
+  // delete text from the db
+  response.send('Hello World!');
+});
+
+router.post('/', (request, response) => {
+  // save new file
+  response.send('Hello World!');
+});
+
+router.put('/', (request, response) => {
+  // replace
+  response.send('Hello World!');
+});
+
 
 module.exports = router;
