@@ -10,6 +10,8 @@
     "webpack": "webpack",
     "eslint": "eslint .",
     "build": "webpack & react-scripts build & serve -s build",
+    "rollback": "knex migrate:rollback",
+    "migrate": "knex migrate:latest",
     "start": "node init/app.js"
   },
   "babel": {
@@ -23,10 +25,13 @@
     "codemirror": "^5.34.0",
     "compression-webpack-plugin": "^1.1.6",
     "express": "^4.16.2",
+    "express-async-handler": "^1.0.3",
     "express-generator": "^4.15.5",
     "extract-text-webpack-plugin": "^3.0.2",
+    "knex": "^0.14.3",
     "morgan": "^1.9.0",
     "node-sass": "^4.7.2",
+    "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-codemirror2": "^4.0.0",
     "react-confirm-alert": "^1.0.8",

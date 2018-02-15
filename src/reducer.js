@@ -35,7 +35,9 @@ function Reducer(state = DefaultState, action) {
 
     case 'DELETE_FILE': {
       const newState = getCopyOfState(state);
-      newState.selectedFile = newState.files[0].fileName;
+      if (newState.selectedFile === action.fileName) {
+        newState.selectedFile = newState.files[0].fileName;
+      }
       newState.files = newState.files
         .filter(fileFromIteration => fileFromIteration.fileName !== action.fileName);
 

@@ -1,26 +1,39 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler');
+const knex = require('../knex-configuration');
 
 const router = express.Router();
 
-router.get('/', (request, response) => {
+router.get('/', asyncHandler(async (request, response) => {
   // load text from the db
-  response.send('Hello World!');
-});
+  const data = await knex.select().from('codemirror');
+  response.send(JSON.stringify(data));
+}));
 
-router.delete('/', (request, response) => {
+router.delete('/', asyncHandler(async (request, response) => {
   // delete text from the db
-  response.send('Hello World!');
-});
+  const data = await knex('codemirror').where('id', request.body.id).del();
+  response.send(JSON.stringify(data));
+}));
 
-router.post('/', (request, response) => {
+router.post('/', asyncHandler(async (request, response) => {
   // save new file
-  response.send('Hello World!');
-});
+  const data = await knex('codemirror').insert({
+    filename: request.body.filename,
+    content: request.body.content,
+  });
+  response.send(JSON.stringify(data));
+}));
 
-router.put('/', (request, response) => {
+router.put('/', asyncHandler(async (request, response) => {
   // replace
-  response.send('Hello World!');
-});
+  const data = knex('books')
+    .where('filename', '=', request.body.filename)
+    .update({
+      content: request.body.content,
+    });
+  response.send(JSON.stringify(data));
+}));
 
 
 module.exports = router;

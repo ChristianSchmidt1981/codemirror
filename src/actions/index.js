@@ -1,11 +1,8 @@
-const updateFile = (text, cursorPosition) => {
-  fetch('./srv/');
-  return {
-    type: 'UPDATE_FILE',
-    text,
-    cursorPosition,
-  };
-};
+const updateFile = (text, cursorPosition) => ({
+  type: 'UPDATE_FILE',
+  text,
+  cursorPosition,
+});
 
 const selectFile = fileName => ({
   type: 'SELECT_FILE',

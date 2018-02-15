@@ -4268,7 +4268,6 @@ function verifyPlainObject(value, displayName, methodName) {
 
 
 var updateFile = function updateFile(text, cursorPosition) {
-  fetch('./srv/');
   return {
     type: 'UPDATE_FILE',
     text: text,
@@ -14498,7 +14497,9 @@ function Reducer() {
     case 'DELETE_FILE':
       {
         var _newState2 = getCopyOfState(state);
-        _newState2.selectedFile = _newState2.files[0].fileName;
+        if (_newState2.selectedFile === action.fileName) {
+          _newState2.selectedFile = _newState2.files[0].fileName;
+        }
         _newState2.files = _newState2.files.filter(function (fileFromIteration) {
           return fileFromIteration.fileName !== action.fileName;
         });
@@ -14631,9 +14632,13 @@ var App = function (_Component) {
 
   (0, _createClass3.default)(App, [{
     key: 'onChange',
-    value: function onChange(editor, data, text) {
+    value: async function onChange(editor, data, text) {
       var line = data.to.line;
       var position = data.to.ch;
+
+      await fetch('http://localhost:3000/', { method: 'PUT' }).then(function (response) {
+        return response.json();
+      });
 
       this.props.updateFile(text, { line: line, position: position });
     }

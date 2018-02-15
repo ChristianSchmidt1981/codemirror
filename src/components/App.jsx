@@ -12,9 +12,14 @@ export default class App extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(editor, data, text) {
+  async onChange(editor, data, text) {
     const line = data.to.line;
     const position = data.to.ch;
+
+    await fetch(
+      'http://localhost:3000/',
+      { method: 'PUT' },
+    ).then(response => response.json());
 
     this.props.updateFile(text, { line, position });
   }
