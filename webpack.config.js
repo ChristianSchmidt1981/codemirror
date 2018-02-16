@@ -7,12 +7,12 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: './init/app.js',
+  entry: './src/index.js',
   output: {
     filename: 'public/assets/js/bundle.js',
   },
   devServer: {
-    contentBase: "public",
+    contentBase: 'public',
     compress: true,
     port: 3000,
     proxy: {
