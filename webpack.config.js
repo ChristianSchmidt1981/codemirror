@@ -32,11 +32,14 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)$/,
+        exclude: '/node_modules/',
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['es2015', { modules: false }], 'react'],
-            plugins: ['transform-runtime'],
+            presets: ['es2015', 'react'],
+            plugins: [
+              'transform-runtime',
+            ],
             cacheDirectory: true,
           },
         },

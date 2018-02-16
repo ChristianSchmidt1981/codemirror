@@ -14,11 +14,10 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/api', index);
-app.use(express.static('../public')); // otherwise load the client app
+app.use(express.static(path.join(__dirname, '../public')));
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
