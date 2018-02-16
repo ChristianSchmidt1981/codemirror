@@ -10,7 +10,7 @@
     "node": "8.9.4"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node init/app.js",
     "hack": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

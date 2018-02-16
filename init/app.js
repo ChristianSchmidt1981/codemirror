@@ -8,13 +8,9 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 
-console.log(1111);
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use('/api', index);

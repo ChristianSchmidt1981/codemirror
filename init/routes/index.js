@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const knex = require('../../knexfile');
+const knex = require('../knex-configuration');
 
 const router = express.Router();
 
