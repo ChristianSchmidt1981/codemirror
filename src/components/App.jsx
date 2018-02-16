@@ -17,7 +17,7 @@ export default class App extends Component {
     const position = data.to.ch;
 
     await fetch(
-      'http://localhost:3000/',
+      '/api',
       { method: 'PUT' },
     ).then(response => response.json());
 
