@@ -27,8 +27,14 @@ export default class File extends Component {
         onConfirm: async function () {
           // send to server
           await fetch(
-            '/api',
-            { method: 'DELETE', body: JSON.stringify({ fileName }) },
+            '/api/',
+            {
+              headers: new Headers({
+                'content-type': 'application/json',
+              }),
+              method: 'DELETE',
+              body: JSON.stringify({ fileName })
+            },
           ).then(response => response.json());
 
           this.props.deleteFile(fileName);
@@ -44,8 +50,14 @@ export default class File extends Component {
 
     // send to server
     await fetch(
-      '/api',
-      { method: 'POST', body: JSON.stringify({ fileName: newFileName, content: '' }) },
+      '/api/',
+      {
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        method: 'POST',
+        body: JSON.stringify({ fileName: newFileName, content: '' })
+      },
     ).then(response => response.json());
 
     this.props.storeFile(newFileName);

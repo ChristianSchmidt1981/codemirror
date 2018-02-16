@@ -18,8 +18,14 @@ export default class App extends Component {
 
     // send to server
     await fetch(
-      '/api',
-      { method: 'PUT' },
+      '/api/',
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        body: JSON.stringify({ content: text }),
+      },
     ).then(response => response.json());
 
     this.props.updateFile(text, { line, position });
