@@ -13,7 +13,7 @@
     "webpack": "webpack",
     "eslint": "eslint .",
     "server-start": "node init/app.js",
-    "postinstall": "yarn build && yarn migrate && yarn seed",
+    "postinstall": "yarn build && yarn migrate",
     "build": "webpack & react-scripts build",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
