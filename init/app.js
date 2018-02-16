@@ -16,7 +16,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+
+app.use('/api', index);
+app.use(express.static('../public')); // otherwise load the client app
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {

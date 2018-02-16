@@ -9,7 +9,7 @@
   "scripts": {
     "webpack": "webpack",
     "eslint": "eslint .",
-    "build": "webpack & react-scripts build & serve -s build",
+    "build": "webpack & react-scripts build",
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
     "start": "node init/app.js"
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "babel-loader": "^7.1.2",
+    "body-parser": "^1.18.2",
     "codemirror": "^5.34.0",
     "compression-webpack-plugin": "^1.1.6",
     "express": "^4.16.2",
