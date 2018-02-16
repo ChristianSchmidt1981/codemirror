@@ -11,6 +11,14 @@ module.exports = {
   output: {
     filename: 'public/assets/js/bundle.js',
   },
+  devServer: {
+    contentBase: "public",
+    compress: true,
+    port: 3000,
+    proxy: {
+      "/api": "http://localhost:3001",
+    }
+  },
 
   module: {
     rules: [
