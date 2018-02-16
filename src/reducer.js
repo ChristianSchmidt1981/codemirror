@@ -21,7 +21,7 @@ function Reducer(state = DefaultState, action) {
 
     case 'STORE_FILE': {
       const newState = getCopyOfState(state);
-      newState.selectedFile = action.fileName,
+      newState.selectedFile = action.fileName;
       newState.files.push({
         fileName: action.fileName,
         text: '',
