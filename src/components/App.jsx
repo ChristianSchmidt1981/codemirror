@@ -16,6 +16,7 @@ export default class App extends Component {
     const line = data.to.line;
     const position = data.to.ch;
 
+    // send to server
     await fetch(
       '/api',
       { method: 'PUT' },

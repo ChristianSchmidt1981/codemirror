@@ -12,27 +12,27 @@ router.get('/', asyncHandler(async (request, response) => {
 
 router.delete('/', asyncHandler(async (request, response) => {
   // delete text from the db
-  const data = await knex('codemirror').where('id', request.body.id).del();
-  response.send(JSON.stringify(data));
+  await knex('codemirror').where('filename', request.body.fileName).del();
+  response.send(JSON.stringify({ state: 'success' }));
 }));
 
 router.post('/', asyncHandler(async (request, response) => {
   // save new file
-  const data = await knex('codemirror').insert({
-    filename: request.body.filename,
+  await knex('codemirror').insert({
+    filename: request.body.fileName,
     content: request.body.content,
   });
-  response.send(JSON.stringify(data));
+  response.send(JSON.stringify({ state: 'success' }));
 }));
 
 router.put('/', asyncHandler(async (request, response) => {
   // replace
-  const data = knex('books')
+  await knex('codemirror')
     .where('filename', '=', request.body.filename)
     .update({
       content: request.body.content,
     });
-  response.send(JSON.stringify(data));
+  response.send(JSON.stringify({ state: 'success' }));
 }));
 
 

@@ -24,17 +24,29 @@ export default class File extends Component {
         message: `did you want to delete ${fileName}`,
         confirmLabel: 'Delete',
         cancelLabel: 'Cancel',
-        onConfirm: function () {
+        onConfirm: async function () {
+          // send to server
+          await fetch(
+            '/api',
+            { method: 'DELETE', body: JSON.stringify({ fileName }) },
+          ).then(response => response.json());
+
           this.props.deleteFile(fileName);
         }.bind(this),
       });
     }
   }
 
-  storeFile(event) {
+  async storeFile(event) {
     event.preventDefault();
 
     const newFileName = document.getElementById('newFile').value;
+
+    // send to server
+    await fetch(
+      '/api',
+      { method: 'POST', body: JSON.stringify({ fileName: newFileName, content: '' }) },
+    ).then(response => response.json());
 
     this.props.storeFile(newFileName);
   }
