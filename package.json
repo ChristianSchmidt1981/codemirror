@@ -6,6 +6,9 @@
   "author": "Christian Schmidt <cschmidt.solingen@gmail.com>",
   "license": "MIT",
   "rootDir": "src",
+  "engines": {
+    "node": "8.9.4"
+  },
   "scripts": {
     "webpack": "webpack",
     "eslint": "eslint .",
