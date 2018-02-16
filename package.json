@@ -10,15 +10,14 @@
     "node": "8.9.4"
   },
   "scripts": {
-    "webpack": "webpack",
-    "eslint": "eslint .",
-    "server-start": "node init/app.js",
+    "start": "node server",
+    "hack": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
     "postinstall": "yarn build && yarn migrate",
-    "build": "webpack & react-scripts build",
     "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run",
-    "start": "react-scripts start"
+    "rollback": "knex migrate:rollback"
   },
   "babel": {
     "presets": [
