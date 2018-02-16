@@ -12,7 +12,7 @@
     "build": "webpack & react-scripts build",
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
-    "start": "node init/app.js"
+    "start": "react-scripts start"
   },
   "babel": {
     "presets": [
