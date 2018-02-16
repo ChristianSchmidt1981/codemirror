@@ -15,8 +15,9 @@
     "server-start": "node init/app.js",
     "postinstall": "yarn build && yarn migrate && yarn seed",
     "build": "webpack & react-scripts build",
-    "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
     "start": "react-scripts start"
   },
   "babel": {
