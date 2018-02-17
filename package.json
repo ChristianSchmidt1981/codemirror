@@ -10,7 +10,7 @@
     "node": "8.9.4"
   },
   "scripts": {
-    "start": "webpack && webpack-dev-server",
+    "start": "webpack-dev-server",
     "hack": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -40,6 +40,7 @@
     "morgan": "^1.9.0",
     "net": "^1.0.2",
     "node-sass": "^4.7.2",
+    "open-browser-webpack-plugin": "^0.0.5",
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-codemirror2": "^4.0.0",

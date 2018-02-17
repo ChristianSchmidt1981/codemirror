@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const index = require('./routes/index');
 
 const app = express();
@@ -12,6 +12,8 @@ app.set('views', path.join(__dirname, 'views'));
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 
+// 3. Parse request bodies as json
+app.use(bodyParser.json({ type: 'application/json', limit: '50mb' }));
 
 app.use('/api', index);
 app.use(express.static(path.join(__dirname, '../public')));

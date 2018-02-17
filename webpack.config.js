@@ -1,64 +1,43 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-
-const extractSass = new ExtractTextPlugin({
-  filename: 'main.css',
-  disable: process.env.NODE_ENV === 'development',
-});
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'public/assets/js/bundle.js',
-  },
-  devServer: {
-    contentBase: 'public',
-    compress: true,
-    port: 3000,
-    proxy: {
-      "/api": "http://localhost:3001",
-    }
-  },
-
+  entry: `${path.resolve(__dirname, 'src')}/index.js`,
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.(scss|css)$/,
-        use: [/*{
-          loader: 'style-loader',
-        }, */{
-          loader: 'css-loader',
-          options: {
-            sourceMap: true,
-          },
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
-          },
-        }],
+        loaders: ['style-loader', 'css-loader'],
+        test: /\.css$/,
       },
       {
-        test: /\.(js|jsx)$/,
-        exclude: '/node_modules/',
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['es2015', 'react'],
-            plugins: [
-              'transform-runtime',
-            ],
-            cacheDirectory: true,
-          },
+        exclude: /node_modules/,
+        include: path.join(__dirname, 'src'),
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015'],
         },
+        test: /\.jsx?$/,
       },
     ],
   },
-
+  devtool: 'source-map',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/public',
+  },
   plugins: [
-    extractSass,
-    new CompressionPlugin({
-      test: /\.js/,
-    }),
+    new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
   ],
+  resolve: {
+    extensions: ['.webpack.js', '.js', '.jsx'],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
+    port: 3000,
+    proxy: {
+      '/api': 'http://localhost:3001',
+    },
+  },
 };
