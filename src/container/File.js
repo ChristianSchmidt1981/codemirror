@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import File from '../components/File.jsx';
-import { deleteFile, storeFile, selectFile } from '../actions/index';
+import { deleteFile, storeFile, selectFile, init } from '../actions/index';
 
 const mapStateToProps = state => ({
   files: state.files,
@@ -10,7 +10,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-  { deleteFile, storeFile, selectFile },
+  {
+    deleteFile,
+    storeFile,
+    selectFile,
+    init,
+  },
   dispatch,
 );
 

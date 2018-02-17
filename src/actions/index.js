@@ -1,5 +1,11 @@
-const updateFile = (text, cursorPosition) => ({
+const init = files => ({
+  type: 'INIT',
+  files,
+});
+
+const updateFile = (fileName, text, cursorPosition) => ({
   type: 'UPDATE_FILE',
+  fileName,
   text,
   cursorPosition,
 });
@@ -24,4 +30,5 @@ module.exports = {
   deleteFile,
   storeFile,
   selectFile,
+  init,
 };

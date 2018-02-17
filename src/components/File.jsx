@@ -9,6 +9,23 @@ export default class File extends Component {
     this.storeFile = this.storeFile.bind(this);
   }
 
+  async componentWillMount() {
+    const loadDataFromServer = async () => {
+      const data = await fetch('/api/', {
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        method: 'GET',
+      }).then(text => text.json());
+      this.props.init(data.files);
+    }
+
+    loadDataFromServer();
+    setInterval(() => {
+      loadDataFromServer();
+    }, 1000);
+  }
+
   deleteFile(event, fileName) {
     event.preventDefault();
 

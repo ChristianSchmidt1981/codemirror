@@ -7,7 +7,14 @@ const router = express.Router();
 router.get('/', asyncHandler(async (request, response) => {
   // load text from the db
   const data = await knex.select().from('codemirror');
-  response.send(JSON.stringify(data));
+
+  const jsonResponse = {
+    files: data.map(file => ({
+      fileName: file.filename,
+      content: file.content,
+    })),
+  };
+  response.send(JSON.stringify(jsonResponse));
 }));
 
 router.delete('/', asyncHandler(async (request, response) => {
@@ -28,7 +35,7 @@ router.post('/', asyncHandler(async (request, response) => {
 router.put('/', asyncHandler(async (request, response) => {
   // replace
   await knex('codemirror')
-    .where('filename', '=', request.body.filename)
+    .where('filename', '=', request.body.fileName)
     .update({
       content: request.body.content,
     });

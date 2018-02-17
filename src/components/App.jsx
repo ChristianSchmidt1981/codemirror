@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+
 import File from '../container/File';
 
 import '../assets/css/main.css';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -24,11 +25,11 @@ export default class App extends Component {
         headers: new Headers({
           'content-type': 'application/json',
         }),
-        body: JSON.stringify({ content: text }),
+        body: JSON.stringify({ fileName: this.props.file.fileName, content: text }),
       },
     ).then(response => response.json());
 
-    this.props.updateFile(text, { line, position });
+    this.props.updateFile(this.props.file.fileName, text, { line, position });
   }
 
   render() {
@@ -53,4 +54,3 @@ export default class App extends Component {
     );
   }
 }
-
